@@ -27,8 +27,6 @@ def fetch_ip_data(ip, api_key):
 
 def bulk_check(csv_filename, api_key, export_filename):
     start_time = time.time()
-
-    print(f"Started check of {total_rows} IPs at {time.strftime('%b %d %H:%M:%S', time.localtime(start_time))}")
     
     with open(csv_filename, 'r') as file, open(export_filename, 'w', newline='') as csv_file:
         csv_reader = csv.reader(file)
@@ -38,7 +36,9 @@ def bulk_check(csv_filename, api_key, export_filename):
         total_rows = sum(1 for _ in csv_reader)
         file.seek(0)
 
-        with ThreadPoolExecutor(max_workers=10) as executor:
+        print(f"🔍 Started check of {total_rows} IPs at {time.strftime('%b %d %H:%M:%S', time.localtime(start_time))}")
+        
+        with ThreadPoolExecutor(max_workers=5) as executor:
             futures = {executor.submit(fetch_ip_data, row[0], api_key): row[0] for row in csv_reader}
 
             with tqdm(total=total_rows, desc="Processing IPs") as pbar:
@@ -59,9 +59,9 @@ def bulk_check(csv_filename, api_key, export_filename):
     elapsed_minutes, elapsed_seconds = divmod(elapsed_time, 60)
     avg_time_per_ip = round(elapsed_time / total_rows, 1) if total_rows > 0 else 0
 
-    print(f"Completed check at {time.strftime('%b %d %H:%M:%S', time.localtime(end_time))}")
-    print(f"Time elapsed was {int(elapsed_minutes)} minutes and {elapsed_seconds:.1f} seconds")
-    print(f"Average time per IP checked was {avg_time_per_ip} seconds")
+    print(f"✅ Completed check at {time.strftime('%b %d %H:%M:%S', time.localtime(end_time))}")
+    print(f"⏱ Time elapsed was {int(elapsed_minutes)} minutes and {elapsed_seconds:.1f} seconds")
+    print(f"⏱ Average time per IP checked was {avg_time_per_ip} seconds")
 
 ###########
 # 2ND BLOCK
