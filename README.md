@@ -7,7 +7,7 @@ Python script to be implemented in a Jupyter Notebook.
 4. Upload you .csv file (no header)
 5. Run code
 
-![Image](image.png)
+![screenshot](https://github.com/Blodarn/bulkcheck_jupyter/tree/master/imagee.png "Image")
 
 You will need an API key from the AbuseIP Database, available for free at (https://www.abuseipdb.com/account/api).
 
