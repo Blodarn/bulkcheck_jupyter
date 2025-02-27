@@ -7,7 +7,7 @@ Python script to be implemented in a Jupyter Notebook.
 4. Upload you .csv file (no header)
 5. Run code
 
-![Image](image.png)
+![Image](image_results.png)
 
 You will need an API key from the AbuseIP Database, available for free at (https://www.abuseipdb.com/account/api).
 
